@@ -1,0 +1,304 @@
+/* ========================================================= */
+/* !! CRITICAL OVERRIDE FOR HEADER STYLING (To fix green background) !! */
+/* ========================================================= */
+.header {
+    /* !! IMPORTANT !!: This forces the header to be white, overriding any existing styles */
+    background-color: var(--bg-white, #ffffff) !important; 
+    border-bottom: 1px solid var(--border-color) !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+.header h1 a {
+    color: var(--primary-color, #007bff) !important; 
+}
+/* ========================================================= */
+
+
+/* ========================================================= */
+/* 1. Global Variables and Base Styling */
+/* ========================================================= */
+
+:root {
+    /* ... बाकी वेरिएबल्स ... */
+    
+    /* Typography: 🟢 FONT FAMILY UPDATED TO POPPINS 🟢 */
+    --font-family: 'Poppins', sans-serif;
+    --border-radius: 8px;
+    --spacing-unit: 1rem;
+}
+
+body {
+    /* body में केवल वेरिएबल का उपयोग करें */
+    font-family: var(--font-family); 
+    background-color: var(--bg-light);
+    /* ... बाकी body स्टाइल ... */
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    margin: 0;
+    padding-top: 60px; /* Header की ऊँचाई के लिए जगह */
+}
+
+/* Page Container */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: var(--spacing-unit) auto;
+    padding: var(--spacing-unit);
+}
+
+
+/* ========================================================= */
+/* 2. Header and Navigation Bar (.header, .navbar) */
+/* ========================================================= */
+/* NOTE: The .header styles are now prioritized in the CRITICAL OVERRIDE section above */
+
+.header h1 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin: 0;
+}
+
+.header h1 a {
+    color: var(--primary-color, #007bff);
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: 15px; 
+}
+
+.navbar a {
+    color: var(--text-dark);
+    text-decoration: none;
+    padding: 8px 10px;
+    border-radius: var(--border-radius);
+    transition: background-color 0.3s, color 0.3s;
+    font-weight: 500;
+    white-space: nowrap; 
+}
+
+.navbar a:hover {
+    background-color: var(--primary-color);
+    color: var(--bg-white);
+}
+
+.auth-status {
+    margin-left: var(--spacing-unit);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+}
+
+/* ========================================================= */
+/* 3. Typography and Headings */
+/* ========================================================= */
+
+h1 {
+    font-size: 2rem;
+    color: var(--text-dark);
+    margin-bottom: var(--spacing-unit);
+}
+
+h2 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-top: 0;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: calc(var(--spacing-unit) * 1.5) 0;
+}
+
+
+/* ========================================================= */
+/* 4. Cards and Boxes (Used for items in list views) */
+/* ========================================================= */
+
+.card {
+    background-color: var(--bg-white);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-unit);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s;
+}
+
+.card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* General Link Styling (excluding navbar) */
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+/* ========================================================= */
+/* 5. Forms (Contact, Event, Recipe forms) */
+/* ========================================================= */
+
+.form-group {
+    margin-bottom: var(--spacing-unit);
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+/* Make inputs full width and styled */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="time"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    box-sizing: border-box; 
+    transition: border-color 0.3s;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+/* Form Buttons */
+.btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    text-decoration: none; 
+    display: inline-block;
+    font-weight: 600;
+    transition: background-color 0.3s, opacity 0.3s;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--bg-white);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: var(--bg-white);
+}
+
+.btn-primary:hover, .btn-secondary:hover {
+    opacity: 0.9;
+}
+
+/* ========================================================= */
+/* 6. Messages (Alerts) */
+/* ========================================================= */
+
+.alert {
+    padding: 15px;
+    margin-bottom: var(--spacing-unit);
+    border: 1px solid transparent;
+    border-radius: var(--border-radius);
+}
+
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+/* ... other alert types (danger, warning) can be added here ... */
+
+
+/* ========================================================= */
+/* 7. Responsiveness & Mobile Navigation (Optional but Recommended) */
+/* ========================================================= */
+
+/* Mobile Styling for Navigation */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column; 
+        height: auto;
+        padding-bottom: 10px;
+    }
+    
+    .header h1 {
+        margin-top: 10px;
+    }
+    
+    .navbar {
+        width: 100%;
+        justify-content: space-around; 
+        flex-wrap: wrap; 
+        gap: 5px;
+    }
+    
+    .navbar a {
+        padding: 5px;
+        font-size: 0.9rem;
+    }
+    
+    .auth-status {
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+        margin-left: 0;
+        border-top: 1px solid var(--border-color);
+        padding-top: 5px;
+    }
+    
+    body {
+        /* Adjusted padding-top to account for the new header height on mobile */
+        padding-top: 150px; 
+    }
+}
+
+/* ========================================================= */
+/* 8. Feature Grids (For Recipe, Blog, Contacts Lists) */
+/* ========================================================= */
+
+.feature-grid {
+    display: grid;
+    /* डिफ़ॉल्ट रूप से, छोटे स्क्रीन के लिए 1 कॉलम */
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px; /* ग्रिड आइटम के बीच की दूरी */
+    padding: 20px 0;
+}
+
+/* मध्यम और बड़ी स्क्रीन के लिए (2 कॉलम) */
+@media (min-width: 768px) {
+    .feature-grid {
+        /* 2-कॉलम लेआउट */
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Feature Item within the grid */
+.feature-item h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+}
+.feature-item p {
+    color: var(--text-dark);
+    margin-bottom: 15px;
+}

@@ -1,0 +1,45 @@
+{% extends 'base.html' %} 
+
+{% block title %}पारिवारिक कैलेंडर{% endblock %}
+
+{% block content %}
+    <h1>🗓️ आगामी इवेंट्स</h1>
+    
+    <a href="{% url 'calendar_app:event_create' %}" class="btn btn-primary" style="margin-bottom: 20px;">
+        ➕ नया इवेंट जोड़ें
+    </a>
+    <hr>
+    
+    <div class="feature-grid">
+        {% for event in events %}
+            <div class="card event-card">
+                <div class="event-details">
+                    <h2>
+                        <span style="color: var(--primary-color);">{{ event.date|date:"d M" }}</span>: 
+                        {{ event.title }}
+                    </h2>
+                    
+                    {% if event.time %}
+                        <p><strong>समय:</strong> {{ event.time|time:"h:i A" }}</p>
+                    {% endif %}
+                    
+                    <p style="color: #6c757d; font-size: 0.9em;">
+                        {{ event.description|default:"कोई विवरण नहीं।" }}
+                    </p>
+                </div>
+                
+                <div class="action-buttons" style="margin-top: 15px;">
+                    <a href="{% url 'calendar_app:event_update' event.pk %}" class="btn btn-secondary">
+                        एडिट करें
+                    </a>
+                    
+                    <a href="{% url 'calendar_app:event_delete' event.pk %}" class="btn btn-secondary" style="background-color: #dc3545;">
+                        डिलीट करें
+                    </a>
+                </div>
+            </div>
+        {% empty %}
+            <p>कैलेंडर में अभी कोई आगामी इवेंट नहीं है। आज ही पहला इवेंट जोड़ें!</p>
+        {% endfor %}
+    </div>
+{% endblock %}

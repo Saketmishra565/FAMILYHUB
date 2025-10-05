@@ -1,0 +1,56 @@
+{% extends 'base.html' %} 
+
+{% block title %}रेसिपी जोड़ें/एडिट करें{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="card" style="padding: 20px;">
+            <h1>
+                {% if object %}
+                    🍲 रेसिपी एडिट करें: {{ object.title }}
+                {% else %}
+                    🍲 नई रेसिपी जोड़ें
+                {% endif %}
+            </h1>
+            <hr>
+            
+            <form method="post">
+                {% csrf_token %}
+                
+                {% if form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        {% for error in form.non_field_errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                {% for field in form %}
+                    <div class="form-group"> 
+                        <label for="{{ field.id_for_label }}" class="form-label">
+                            {{ field.label }}
+                        </label>
+
+                        {{ field }}
+
+                        {% for error in field.errors %}
+                            <div class="form-text alert-danger" style="font-size: 0.85em; margin-top: 5px;">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+                
+                <button type="submit" class="btn btn-primary">
+                    सेव करें
+                </button>
+            </form>
+            
+            <p style="margin-top: 20px;">
+                <a href="{% url 'recipes:recipes_list' %}" class="btn btn-secondary">
+                    वापस जाएँ
+                </a> 
+            </p>
+        </div>
+    </div>
+{% endblock %}

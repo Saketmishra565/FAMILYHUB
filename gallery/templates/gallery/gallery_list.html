@@ -1,0 +1,37 @@
+{% extends 'base.html' %} 
+
+{% block title %}परिवार गैलरी{% endblock %}
+
+{% block content %}
+    <h1>🖼️ फोटो और वीडियो गैलरी</h1>
+    
+    <a href="{% url 'gallery:photo_upload' %}" class="btn btn-primary" style="margin-bottom: 20px;">
+        ➕ नया फोटो अपलोड करें
+    </a>
+    <hr>
+    
+    <div class="gallery-grid">
+        {% for photo in photos %}
+            <div class="gallery-item card">
+                
+                <a href="{% url 'gallery:photo_detail' pk=photo.pk %}">
+                    <img src="{{ photo.image.url }}" alt="{{ photo.title }}" class="gallery-image">
+                </a>
+
+                <div class="caption-overlay">
+                    <h3>{{ photo.title|truncatechars:25 }}</h3>
+                    <small>अपलोड किया गया: {{ photo.uploaded_at|date:"M d, Y" }}</small>
+                </div>
+                
+                <div class="action-buttons" style="padding: 10px; text-align: right; border-top: 1px solid var(--border-color);">
+                    <a href="{% url 'gallery:photo_detail' pk=photo.pk %}" class="btn btn-secondary btn-sm">
+                        विवरण
+                    </a>
+                    {# <a href="{% url 'gallery:photo_delete' pk=photo.pk %}" class="btn btn-secondary btn-sm" style="background-color: #dc3545;">Delete</a> #}
+                </div>
+            </div>
+        {% empty %}
+            <p>गैलरी में अभी कोई फोटो या वीडियो नहीं है।</p>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %} 
+
+{% block title %}फैमिली ब्लॉग{% endblock %}
+
+{% block content %}
+    <h1>📰 फैमिली ब्लॉग पोस्ट्स</h1>
+    
+    <a href="{% url 'blog:post_create' %}" class="btn btn-primary" style="margin-bottom: 20px;">
+        ➕ नया ब्लॉग पोस्ट बनाएँ
+    </a>
+    <hr>
+
+    <div class="feature-grid">
+        {% for post in posts %}
+            <div class="card blog-post-item">
+                <h2>{{ post.title }}</h2>
+                <small>
+                    <span style="color: #6c757d;">लेखक: **{{ post.author.username }}** | {{ post.created_at|date:"F d, Y" }}</span>
+                </small>
+                
+                <p style="margin-top: 10px;">
+                    {{ post.content|truncatewords:50 }}...
+                </p>
+                
+                <div class="action-buttons" style="margin-top: 15px;">
+                    <a href="{% url 'blog:post_detail' post.pk %}" class="btn btn-secondary">
+                        पूरा पढ़ें
+                    </a> 
+                    
+                    <a href="{% url 'blog:post_update' post.pk %}" class="btn btn-secondary">
+                        एडिट करें
+                    </a>
+                    
+                    <a href="{% url 'blog:post_delete' post.pk %}" class="btn btn-secondary" style="background-color: #dc3545;">
+                        डिलीट करें
+                    </a>
+                </div>
+            </div>
+        {% empty %}
+            <p>अभी तक कोई ब्लॉग पोस्ट नहीं है। आज ही पहली पोस्ट लिखें!</p>
+        {% endfor %}
+    </div>
+{% endblock %}

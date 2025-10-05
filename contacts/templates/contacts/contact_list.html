@@ -1,0 +1,35 @@
+{% extends 'base.html' %} 
+
+{% block title %}कॉन्टैक्ट बुक{% endblock %}
+
+{% block content %}
+    <h1>📞 फैमिली कॉन्टैक्ट्स</h1>
+    
+    <a href="{% url 'contacts:contact_create' %}" class="btn btn-primary" style="margin-bottom: 20px;">
+        ➕ नया कॉन्टैक्ट जोड़ें
+    </a> 
+    
+    <hr>
+
+    <div class="feature-grid">
+        {% for contact in contacts %}
+            <div class="card contact-item">
+                <h3>{{ contact.name }} ({{ contact.relation }})</h3>
+                
+                <p><strong>फ़ोन:</strong> {{ contact.phone|default:"N/A" }}</p>
+                <p><strong>ईमेल:</strong> {{ contact.email|default:"N/A" }}</p>
+
+                <div class="action-buttons" style="margin-top: 15px;">
+                    <a href="{% url 'contacts:contact_update' contact.pk %}" class="btn btn-secondary">
+                        एडिट करें
+                    </a>
+                    <a href="{% url 'contacts:contact_delete' contact.pk %}" class="btn btn-secondary" style="background-color: #dc3545;">
+                        डिलीट करें
+                    </a>
+                </div>
+            </div>
+            {% empty %}
+            <p>कॉन्टैक्ट बुक खाली है। आज ही पहला कॉन्टैक्ट जोड़ें!</p>
+        {% endfor %}
+    </div>
+{% endblock %}

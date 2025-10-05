@@ -1,0 +1,17 @@
+# Python / Django specific files to ignore
+
+# Virtual environment folder (Venv)
+venv/
+__pycache__/
+
+# Byte-compiled files
+*.pyc
+
+# Django specific
+db.sqlite3
+media/ # User uploaded files
+.env
+*.log
+
+# IDE specific (like VSCode)
+.vscode/

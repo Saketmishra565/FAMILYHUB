@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}फोटो डिलीट करें{% endblock %}
+
+{% block content %}
+    <div class="card" style="width: 50%; margin: 50px auto; text-align: center;">
+        <h2>फोटो डिलीट करें</h2>
+        <p>क्या आप वाकई फोटो <strong>"{{ object.title }}"</strong> को डिलीट करना चाहते हैं? यह क्रिया पूर्ववत नहीं की जा सकती!</p>
+
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" style="background-color: #f44336; color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px;">
+                हाँ, डिलीट करें
+            </button>
+            <a href="{% url 'gallery_list' %}" style="text-decoration: none; padding: 10px 15px; border: 1px solid #ccc; border-radius: 5px; color: #333;">कैंसिल</a>
+        </form>
+    </div>
+{% endblock %}

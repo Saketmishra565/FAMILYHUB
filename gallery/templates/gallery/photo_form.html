@@ -1,0 +1,49 @@
+{% extends "base.html" %} 
+
+{% block title %}नया फोटो अपलोड करें{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="card" style="padding: 20px;">
+        
+        <h1>➕ नया फोटो अपलोड करें</h1>
+        <hr>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            {% if form.non_field_errors %}
+                <div class="alert alert-danger">
+                    {% for error in form.non_field_errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            {% for field in form %}
+                <div class="form-group mb-3">
+                    <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                    
+                    {{ field }}
+
+                    {% for error in field.errors %}
+                        <div class="form-text alert-danger" style="font-size: 0.85em; margin-top: 5px;">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+
+                    {% if field.help_text %}
+                        <p class="form-text text-muted" style="font-size: 0.8em; margin-top: 5px;">
+                            {{ field.help_text|safe }}
+                        </p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+
+            <button type="submit" class="btn btn-primary">फोटो अपलोड करें</button>
+            
+            <a href="{% url 'gallery:gallery_list' %}" class="btn btn-secondary">कैंसिल करें</a>
+        </form>
+    </div>
+</div>
+{% endblock content %}
